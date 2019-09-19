@@ -16,24 +16,24 @@ for channel = 1:2
         
         figure;
         imshow(u_img(:,:,1), []);
-%         rect = getrect();
-%         
-%         if mod(rect(1), 128) ~= 0
-%             rect(1) = rect(1) - mod(rect(1), 128) + 128;
-%         end
-%         
-%         if mod(rect(2), 128) ~= 0
-%             rect(2) = rect(2) - mod(rect(2), 128) + 128;
-%         end
-%         
-%         if mod(rect(3), 128) ~= 0
-%             rect(3) = rect(3) - mod(rect(3), 128);
-%         end
-%         
-%         if mod(rect(4), 128) ~= 0
-%             rect(4) = rect(4) - mod(rect(4), 128);
-%         end
-%         
+        rect = getrect();
+        
+        if mod(rect(1), 128) ~= 0
+            rect(1) = rect(1) - mod(rect(1), 128) + 128;
+        end
+        
+        if mod(rect(2), 128) ~= 0
+            rect(2) = rect(2) - mod(rect(2), 128) + 128;
+        end
+        
+        if mod(rect(3), 128) ~= 0
+            rect(3) = rect(3) - mod(rect(3), 128);
+        end
+        
+        if mod(rect(4), 128) ~= 0
+            rect(4) = rect(4) - mod(rect(4), 128);
+        end
+        
     elseif channel == 2
         load 's102_uimgs_bimgs.mat';
 %     elseif channel == 3        
@@ -49,8 +49,8 @@ for channel = 1:2
     % in the final PSF grid
     
 %     % Crop the u_imgs and b_imgs to the specified rect region
-%     u_img = u_img(rect(2):rect(2)+rect(4),rect(1):rect(1)+rect(3),1);
-%     b_img = b_img(rect(2):rect(2)+rect(4),rect(1):rect(1)+rect(3),1);
+    u_img = u_img(rect(2):rect(2)+rect(4),rect(1):rect(1)+rect(3),1);
+    b_img = b_img(rect(2):rect(2)+rect(4),rect(1):rect(1)+rect(3),1);
     
     % For every 128 x 128 region of the images, find the PSF and plot it
     [r, c, p] = size(u_img);

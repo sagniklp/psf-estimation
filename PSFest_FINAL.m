@@ -24,7 +24,7 @@ dy = [0,  0, 0;
 % Read in patterns for estimation
 load('tmp_uimg.mat')
 load('tmp_bimg.mat')
-u_img = cur_uimg(:,:,1);
+u_img = cur_bimg(:,:,1);
 b_img = cur_bimg(:,:,1);
 
 % --------- Compute f, the Expected value of k. ---------- %

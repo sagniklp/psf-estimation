@@ -8,14 +8,19 @@ function [i_prime_norm] = warp_funtion(cb, noise, black, white, img_cb, img_nois
 % black = black(1:end-34*3,1:end-34*7);
 % white = white(1:end-34*3,1:end-34*7);
 
-cb_rows = 19; % - 3;
-cb_cols = 19; % - 7;
-S_p = 20;
+cb_rows = 17; % - 3;
+cb_cols = 17; % - 7;
+S_p = 200;
 
 %Extract corners from synthetic and actual checkerboard image
 % col (x), row (y) order for coordinates
 [aB_coords] = get_cb_pts(cb, black, white, cb_rows, cb_cols);
 [xy_coords] = get_cb_pts(img_cb, img_blk, img_wht, cb_rows, cb_cols);
+%orientation fix
+for i=1:225
+    ans(226-i,:)=aB_coords(i,:);
+end
+aB_coords=ans;
 
 % Visualize to make sure that the points match between the synthetic vs img
 % of the checkerboard pattern
@@ -86,9 +91,10 @@ for cur_block = 1:numel(aB_coords(:,1))
     
     for idx = 1:numel(xy_new(:,1))
         cur_xy = xy_new(idx,:);
-%         plot(cur_xy(1),cur_xy(2),'r.')
+        %hold on;
+        %plot(cur_xy(1),cur_xy(2),'r.')
         count(cur_xy(1), cur_xy(2)) = count(cur_xy(1), cur_xy(2)) + 1;
-%         plot(round(uv_mat(idx,2)*(u1-u0)+u0),round(uv_mat(idx,3)*(v2-v0)+v0),'g.')
+        %plot(round(uv_mat(idx,2)*u+u0),round(uv_mat(idx,3)*v+u1),'g.')
 %         i_prime(cur_xy(1), cur_xy(2),:) = i_prime(cur_xy(1), cur_xy(2),:) + noise(round(uv_mat(idx,2)*(u1-u0)+u0),round(uv_mat(idx,3)*(v2-v0)+v0),:);
         i_prime(cur_xy(1), cur_xy(2),:) = i_prime(cur_xy(1), cur_xy(2),:) + noise(round(uv_mat(idx,2)*u +u0),round(uv_mat(idx,3)*v+u1),:);
     end

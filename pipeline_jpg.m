@@ -2,14 +2,20 @@
 % Author: Rose Rustowicz, rose.rustowicz@gmail.com
 % Date: 16 March 2018
 
+%% Read camera params
+load('camParams_omniV.mat')
 %% Read images
 folder = 'inp_images/omniv/';
 cb_img = im2double(demosaic(imread(strcat(folder,'cb.png')),'bggr'));
+cb_img = undistortImage(cb_img, cameraParams_omniV);
 black_img = im2double(demosaic(imread(strcat(folder,'bl.png')),'bggr'));
+black_img = undistortImage(black_img, cameraParams_omniV);
 white_img = im2double(demosaic(imread(strcat(folder,'wh.png')),'bggr'));
+white_img = undistortImage(white_img, cameraParams_omniV);
 
 for idx = 1:5
     noise_img{idx} = im2double(demosaic(imread(char(strcat(folder,'n',string(idx),'.png'))),'bggr'));
+    noise_img{idx} = undistortImage(noise_img{idx}, cameraParams_omniV);
 end
 
 %% Read in pristine targets 
