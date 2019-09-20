@@ -10,7 +10,10 @@ k = k_init(:);
 
 % Perform a deconvolution on the image and the noisy image
 options.Method = 'sd';
-options.NumIter = 500;
+options.NumIter = 1000;
+options.maxFunEvals =1000;
+options.optTol=1e-5;
+options.maxIter=1000;
 psf = minFunc(@PSFest_FINAL,k, options);
 psf = reshape(psf, [k_size, k_size]);
 

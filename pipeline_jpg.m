@@ -22,11 +22,11 @@ end
 cb = im2double(imread('targets/samsung/cb.png'));
 black = im2double(imread('targets/samsung/bl.png'));
 white = im2double(imread('targets/samsung/wh.png'));
-noise{1} = im2double(imread('targets/samsung/n1.png'));
-noise{2} = im2double(imread('targets/samsung/n2.png'));
-noise{3} = im2double(imread('targets/samsung/n3.png'));
-noise{4} = im2double(imread('targets/samsung/n4.png'));
-noise{5} = im2double(imread('targets/samsung/n5.png'));
+noise{1} = im2double(imread('targets/noise_01_n.png'));
+noise{2} = im2double(imread('targets/noise_02_n.png'));
+noise{3} = im2double(imread('targets/noise_03_n.png'));
+noise{4} = im2double(imread('targets/noise_04_n.png'));
+noise{5} = im2double(imread('targets/noise_05_n.png'));
 
 %% FOR EACH COLOR CHANNEL:
 for c = 1:2

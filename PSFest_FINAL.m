@@ -7,9 +7,9 @@ function [f, df] = PSFest_FINAL(k)
 
 % Set constants
 k_size = sqrt(size(k(:),1));
-lambda = 10; 
+lambda = 100; 
 mu = 10; 
-gamma = 0;
+gamma = 10;
 
 k = reshape(k, [k_size, k_size]);
 
@@ -55,6 +55,9 @@ dfx = 2 * mu * ifft2(fft2(k) .* psf2otf(dxk, size(k)));
 dfy = 2 * mu * ifft2(fft2(k) .* psf2otf(dyk, size(k)));
 df3 = dfx + dfy;
 df3 = df3(:);
+
+% Fourth term
+% modfk_prime=sqrt((fft2(cur_bimg).*conj(fft2(cur_bimg)))/(fft2(cur_uimg).*conj(fft2(cur_uimg))));
 
 f = f1 + f2 + f3;
 df = df1 + df2 + df3;
